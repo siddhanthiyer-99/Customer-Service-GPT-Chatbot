@@ -1,0 +1,104 @@
+{% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">  
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% load static %}
+  </head>
+
+  <body class = "home-page" style="background-image: url('/static/img/image 2.png')">
+    <form id="chat-form" method="POST" autocomplete="off" style="margin-bottom: 0;">
+      {%csrf_token%}
+    <div id="databasegpt">
+      <div id="sidebar">
+        <div style="margin-top: 5vh;">
+          <a href='../home'> <img src = '/static/img/image 1.png'></img></a>
+        </div>
+        
+      </div>
+
+      <div id="chatbot">
+        <div id="chat-messages-container">
+          <!-- This is where new messages will be added dynamically -->
+          <!-- <div class="bot-message"> <img src="{% static 'img/bot.png' %}" style="height: 40px; width: 40px;"> Hi, tell me a prompt to query</div> -->
+          <div class="bot-message" style="display: flex; align-items: center; gap: 10px">
+            <img src="/static/img/bot.jpg" width="30" height="30;">
+            <div>
+              Hi, please enter a prompt! :)
+            </div>
+          </div>
+
+        </div>
+
+        <div id="input-container">  
+          <input id = "user-input" type="text" placeholder="Type your message..." name="prompt">
+          <button id ="send-button" type="submit" class="test-button btn btn-primary">Send</button> 
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      function appendMessage(message, className, imageUrl) {
+          const container = document.getElementById('chat-messages-container');
+          const div = document.createElement('div');
+          div.className = className;
+
+          const img = document.createElement('img');
+          img.src = imageUrl;
+          img.width = 30; // Set width to 40px
+          img.height = 30; // Set height to 40px
+          img.style.marginRight = '10px';
+          div.appendChild(img);
+          
+          const textContent = document.createElement('div');
+          textContent.textContent = message;
+          textContent.style.margin = '10px'; // Remove default margin
+          textContent.style.maxWidth = '100%';
+          textContent.style.overflowWrap = 'break-word';
+          textContent.style.overflow = 'hidden';
+          textContent.style.wordWrap = 'break-word'
+          textContent.style.whiteSpace = 'pre';
+          textContent.style.textWrap = 'wrap'
+          div.appendChild(textContent);
+
+          div.style.display = 'flex';
+          div.style.alignItems = 'center';
+
+          container.appendChild(div);
+          container.scrollTop = container.scrollHeight;
+      }
+  
+      // This function is called when the form is submitted
+      function handleFormSubmission(event) {
+          event.preventDefault();
+          const form = event.target;
+          const formData = new FormData(form);
+  
+          fetch(form.action, {
+              method: 'POST',
+              body: formData,
+          })
+          .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then(data => {
+              if (data && data.user && data.bot) {
+                  appendMessage(data.user, 'user-message', '/static/img/user.jpg');
+                  appendMessage(data.bot, 'bot-message', '/static/img/bot.jpg');
+                  document.getElementById('user-input').value = '';
+              } else {
+                  appendMessage('Invalid user prompt! Try again.');
+                  console.error('Invalid JSON response:', data);
+              }
+          })
+          .catch(error => console.error('Error:', error));
+      }
+  
+      document.getElementById('chat-form').addEventListener('submit', handleFormSubmission);
+    </script>
+    </form>
+  </body>
+</html>

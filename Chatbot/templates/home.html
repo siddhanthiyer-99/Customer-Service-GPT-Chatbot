@@ -1,0 +1,30 @@
+{% load static %}
+<html>
+    <head>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <title>Fourth Square</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+
+    <body class = "home-page">
+        <nav class = "test-navbar navbar navbar-light">
+            <div class="container-fluid">
+                <div>
+                    <a href='home'> <img src = '/static/img/image 1.png'></img></a>
+                </div>
+
+                <div style="margin-left: -5vw;">
+                    <h1 class="headings">Customer Service GPT</h1>
+                </div>
+
+                <div>
+                    <a class="navbar-brand" href='login'>
+                        <h1 class="headings"> Login </h1>
+                    </a>
+                </div>
+            </div>
+        </nav>    
+    </body>
+</html>

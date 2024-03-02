@@ -1,0 +1,64 @@
+{% load static %}
+<head>
+    <title>Fourth Square</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <title>Fourth Square</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="home-page">
+    <nav class = "test-navbar navbar navbar-light">
+        <div class="container-fluid">
+            <div>
+                <a href='home'> <img src = '/static/img/image 1.png'></img></a>
+            </div>
+
+            <div style="margin-left: -5vw;">
+                <h1 class="headings">Customer Service GPT</h1>
+            </div>
+        </div>
+    </nav> 
+
+    <div style="text-align: center; margin-top: 25vh;">
+        <h1 class="headings"> LOGIN </h1>
+    </div>     
+    
+    <div class = "center">
+        
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong> {{ message }} </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+                
+            {% endfor %}
+        {% endif %}
+
+    
+        <form action="" method = "POST" autocomplete="off">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label" style="color: white;">Username</label>
+                <input type="text" class="test-input form-control" name="username">
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label" style="color: white;">Password</label>
+                <input type="password" class="test-input form-control" name="password">
+            </div>
+            
+
+            <div style="text-align: center;">
+                <button type="submit" class="test-button btn btn-primary">Sign In</button>
+            </div>
+
+            <div class ="mb-3" style="color: white; margin-top: 2vh; text-align: center;">
+                Not a registered User?
+                <a href = 'signup'>Sign up here!</a>
+            </div>
+        </form>
+    </div>
+</body>

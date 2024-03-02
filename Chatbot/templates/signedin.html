@@ -1,0 +1,43 @@
+{% load static %}
+<head>
+    <title> Welcome {{ user.username }}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class = "home-page">
+    <nav class = "navbar navbar-light" style="background-color: #0A0B0C; border-radius: 10px; margin-left: 5vw; margin-right: 5vw;  margin-top: 5vh;">
+        <div class="container-fluid">
+            <div>
+                <a href='home'> <img src = '/static/img/image 1.png'></img></a>
+            </div>
+
+            <div style="margin-left: -5vw;">
+                <h1 class="headings">Customer Service GPT</h1>
+            </div>
+        </div>
+    </nav>
+
+    <div class="center2 d-flex flex-column" style="text-align: center; margin-top: 25vh;">
+        <div class="p-2">
+            <h1 class="headings"> WELCOME TO CUSTOMER SERVICE GPT - {{ user.username }}</h1>
+        </div>
+        <div class="group-members">
+            {% if group_name or is_superuser %}
+                <h3 class="headings">ONLY GROUP MEMBERS CAN SEE THIS</h3>
+            {% endif %}
+        </div>
+        <div class="main-app p-2">           
+            <a href = "chatbot"> <h1 class="headings">Go to Chatbot </h1></a> <br>
+        </div>
+        
+        <div class="p-2">
+            <form action="" method = "POST" autocomplete="off">
+                {% csrf_token %}
+            <button type="submit" class="test-button btn btn-primary">Logout</button>
+            </form>
+        </div>
+        
+    </div>
+</body>
