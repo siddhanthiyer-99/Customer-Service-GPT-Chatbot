@@ -1,5 +1,6 @@
 
 <h2> Steps to run: </h2>
+
 STEP 0: Git clone repo <br>
 
 STEP 1: pip install -r requirements.txt <br>
