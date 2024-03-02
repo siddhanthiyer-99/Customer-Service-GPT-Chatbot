@@ -1,14 +1,16 @@
+
+<h2> Steps to run: </h2>
 STEP 0: 
-Git clone repo
+Git clone repo <br>
 
 STEP 1:
-pip install -r requirements.txt
+pip install -r requirements.txt <br>
 
 STEP 2:
-Download Postgres and PGAdmin 4 to create Database and import data
+Download Postgres and PGAdmin 4 to create a Database and import data <br>
 
 STEP 3:
-Create env file in FourthSquare folder with all the necessary credentials
+Create an env file in the FourthSquare folder with all the necessary credentials <br>
 
 STEP 4:
-Run python manage.py runserver
+Run python manage.py runserver <br>
