@@ -1,6 +1,6 @@
 
 <h2> Steps to run: </h2>
-STEP 0: 
+STEP 0: <br>
 Git clone repo <br>
 
 STEP 1:
